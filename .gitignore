@@ -1,0 +1,5 @@
+backend/FTGapp/__pycache__/
+backend/FTGapp/migrations/__pycache__/
+backend/backend/__pycache__/urls.cpython-310.pyc
+backend/backend/__pycache__/wsgi.cpython-310.pyc
+backend/db.sqlite3
