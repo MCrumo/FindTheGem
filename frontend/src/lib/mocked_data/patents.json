@@ -1,0 +1,215 @@
+{
+  "headers": {
+    "applicationFields": "Application Fields",
+    "applicationNumber": "Application Number",
+    "country": "Country",
+    "numberOfCitations": "Number of Citations",
+    "owner": "Owner",
+    "sizePatentFamily": "Size of Patent Family",
+    "status": "Status",
+    "title": "Title"
+  },
+  "samples": [
+    {
+      "applicationFields": [
+        "Computer Science",
+        "Information Technology"
+      ],
+      "applicationNumber": "US10/102568",
+      "country": "US",
+      "id": "e1fe632d-18b4-414a-9ce7-f121e050beb5",
+      "numberOfCitations": 12,
+      "owner": "Fractus",
+      "sizePatentFamily": 32,
+      "status": "Inactive - Abandoned",
+      "title": "Method and System for Generating a Document"
+    },
+    {
+      "applicationFields": [
+        "Medicine",
+        "Nanotechnology"
+      ],
+      "applicationNumber": "EU29/3940223",
+      "country": "EU",
+      "id": "066bf417-e683-4860-ae60-513b8ee72b37",
+      "numberOfCitations": 3,
+      "owner": "Nanorobotics Inc",
+      "sizePatentFamily": 12,
+      "status": "Active",
+      "title": "Medical Nanorobots for Cancer Treatment"
+    },
+    {
+      "applicationFields": [
+        "Energy",
+        "Engineering"
+      ],
+      "applicationNumber": "US10/828329",
+      "country": "US",
+      "id": "f1b3b3b3-3b3b-3b3b-3b3b3b3b3b3b",
+      "numberOfCitations": 0,
+      "owner": "ThermalTech",
+      "sizePatentFamily": 5,
+      "status": "Active",
+      "title": "Thermal Energy Storage System"
+    },
+    {
+      "applicationFields": [
+        "Energy",
+        "Engineering"
+      ],
+      "applicationNumber": "EU10/828329",
+      "country": "EU",
+      "id": "s1b3b3b3-3b3b-3b3b-3b3b3b3b3b3b",
+      "numberOfCitations": 0,
+      "owner": "SolarTech",
+      "sizePatentFamily": 5,
+      "status": "Active",
+      "title": "Solar Roof Tiles"
+    },
+    {
+      "applicationFields": [
+        "Biotechnology"
+      ],
+      "applicationNumber": "US15/948322",
+      "country": "US",
+      "id": "a7d8a9f5-455b-421b-80a7-d23d6f4e9123",
+      "numberOfCitations": 9,
+      "owner": "BioGen",
+      "sizePatentFamily": 7,
+      "status": "Active",
+      "title": "Genetic Editing Techniques for Crops"
+    },
+    {
+      "applicationFields": [
+        "Pharmaceuticals"
+      ],
+      "applicationNumber": "EU17/2451123",
+      "country": "EU",
+      "id": "c0e1d2a4-91c6-4d3e-9b5c-8d9e2a2d5f67",
+      "numberOfCitations": 4,
+      "owner": "HealthPharm",
+      "sizePatentFamily": 14,
+      "status": "Active",
+      "title": "New Vaccine Formulation for Influenza"
+    },
+    {
+      "applicationFields": [
+        "Aerospace"
+      ],
+      "applicationNumber": "US20/3984721",
+      "country": "US",
+      "id": "b2f3c5d6-7a8b-41e1-8f8c-9a9e3e2f5b89",
+      "numberOfCitations": 20,
+      "owner": "SpaceX",
+      "sizePatentFamily": 21,
+      "status": "Active",
+      "title": "Reusable Rocket Technology"
+    },
+    {
+      "applicationFields": [
+        "Robotics",
+        "Artificial Intelligence"
+      ],
+      "applicationNumber": "JP13/8392019",
+      "country": "JP",
+      "id": "d1e2f3g4-5h6i-7j8k-9l0m-1n2o3p4q5r6s",
+      "numberOfCitations": 15,
+      "owner": "RoboTech",
+      "sizePatentFamily": 10,
+      "status": "Active",
+      "title": "Autonomous Navigation System for Robots"
+    },
+    {
+      "applicationFields": [
+        "Automotive"
+      ],
+      "applicationNumber": "US18/9245610",
+      "country": "US",
+      "id": "e3f4g5h6-7i8j-9k0l-1m2n-3o4p5q6r7s8t",
+      "numberOfCitations": 8,
+      "owner": "Tesla",
+      "sizePatentFamily": 18,
+      "status": "Active",
+      "title": "Electric Vehicle Battery Management"
+    },
+    {
+      "applicationFields": [
+        "Environmental Science"
+      ],
+      "applicationNumber": "AU19/8274531",
+      "country": "AU",
+      "id": "f5g6h7i8-9j0k-1l2m-3n4o-5p6q7r8s9t0u",
+      "numberOfCitations": 6,
+      "owner": "EcoSolutions",
+      "sizePatentFamily": 11,
+      "status": "Active",
+      "title": "Biodegradable Packaging Materials"
+    },
+    {
+      "applicationFields": [
+        "Telecommunications",
+        "Networking"
+      ],
+      "applicationNumber": "CN21/1938472",
+      "country": "CN",
+      "id": "g7h8i9j0-1k2l-3m4n-5o6p-7q8r9s0t1u2v",
+      "numberOfCitations": 25,
+      "owner": "Huawei",
+      "sizePatentFamily": 19,
+      "status": "Active",
+      "title": "5G Network Optimization Techniques"
+    },
+    {
+      "applicationFields": [
+        "Finance",
+        "Blockchain"
+      ],
+      "applicationNumber": "US22/4829371",
+      "country": "US",
+      "id": "h9i0j1k2-3l4m-5n6o-7p8q-9r0s1t2u3v4w",
+      "numberOfCitations": 3,
+      "owner": "FinTech Innovations",
+      "sizePatentFamily": 8,
+      "status": "Active",
+      "title": "Blockchain-Based Payment System"
+    },
+    {
+      "applicationFields": [],
+      "applicationNumber": "US23/7293847",
+      "country": "US",
+      "id": "i1j2k3l4-5m6n-7o8p-9q0r-1s2t3u4v5w6x",
+      "numberOfCitations": 0,
+      "owner": "SoloInventor",
+      "sizePatentFamily": 1,
+      "status": "Inactive - Abandoned",
+      "title": "Novel Gadget Design"
+    },
+    {
+      "applicationFields": [
+        "Agriculture",
+        "Biotechnology"
+      ],
+      "applicationNumber": "BR19/8273847",
+      "country": "BR",
+      "id": "j2k3l4m5-6n7o-8p9q-0r1s-2t3u4v5w6x7y",
+      "numberOfCitations": 5,
+      "owner": "AgriTech",
+      "sizePatentFamily": 9,
+      "status": "Active",
+      "title": "High Yield Crop Engineering"
+    },
+    {
+      "applicationFields": [
+        "Computer Science"
+      ],
+      "applicationNumber": "IN21/1938572",
+      "country": "IN",
+      "id": "k3l4m5n6-7o8p-9q0r-1s2t-3u4v5w6x7y8z",
+      "numberOfCitations": 10,
+      "owner": "TechSolutions",
+      "sizePatentFamily": 17,
+      "status": "Active",
+      "title": "Quantum Computing Algorithms"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+	"/": [],
+	"/patents": [
+		"src/routes/patents/+page.ts"
+	],
+	"/patents/[id]": [
+		"src/routes/patents/[id]/+page.server.ts"
+	]
+}
