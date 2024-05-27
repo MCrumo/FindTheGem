@@ -55,7 +55,7 @@ def getAttachNumber(publication_number, application_number):
 if __name__ == "__main__":
     np.random.seed(12345)
     df = pd.DataFrame(pd.read_excel('Llistat-patents-Fractus_estudiants_v2.xlsx'))
-    patents = df[['Application Number', 'Publication number', 'Status', 'Country', 'Grant Date', 'Expiration date']]
+    patents = df[['Application Number', 'Publication number', 'Title', 'Status', 'Country', 'Grant Date', 'Expiration date']]
     number_pantents = patents.shape[0]
 
     for i in range(number_pantents):
