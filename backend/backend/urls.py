@@ -16,6 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import SimpleRouter
+from FTGapp.views import PatentsViewset
+
+approuter = SimpleRouter()
+approuter.register(prefix='api/v1/patents',basename='patents',viewset=PatentsViewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
