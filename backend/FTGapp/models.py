@@ -4,5 +4,15 @@ from django.db import models
 
 #El frontend els ha de nombrar igual, els atributs de Patents
 class Patent(models.Model):
-    titol = models.TextField(max_length=255, blank = False) #no es pot deixar en blanc
-    cos = models.TextField(blank=True, null=True) #null es que que pot ser null
+    aplitactionNumber = models.TextField(max_length=255, blank = True, null = True)
+    publicationNumber = models.TextField(max_length=255, blank = True, null = True)
+    title = models.TextField(max_length=255, blank = True, null = True) #no es pot deixar en blanc
+    status = models.TextField(max_length=255, blank = True, null = True) 
+    country = models.TextField(max_length=255, blank = True, null = True) 
+    grantDate = models.TextField(max_length=255, blank = True, null = True) 
+    expirationDate = models.TextField(max_length=255, blank = True, null = True) 
+    sizeFamily = models.TextField(max_length=255, blank = True, null = True) 
+    numberCitations = models.TextField(max_length=255, blank = True, null = True) 
+    score = models.TextField(max_length=255, blank = True, null = True) 
+   
+    # EXAMPELE cos = models.TextField(blank=True, null=True) #null es que que pot ser null
