@@ -69,19 +69,22 @@ if __name__ == '__main__':
     
     # Load dataset
     patents = pd.read_csv('patents.csv')
-    aux = patents['Expiration date'].values.tolist()
-    years_pri = years_priority(aux, actual_year)
-    status_pri = statuss_priority(patents['Status'])
-    citations_pri = citations_priority(patents['number_citations'])
-    family_pri = size_family_priority(patents['size_family'])
+    # aux = patents['Expiration date'].values.tolist()
+    # years_pri = years_priority(aux, actual_year)
+    # status_pri = statuss_priority(patents['Status'])
+    # citations_pri = citations_priority(patents['number_citations'])
+    # family_pri = size_family_priority(patents['size_family'])
     
-    score = []
-    # Merge priorities
-    for i in range(len(patents)):
-        score_computed = (years_pri[i] + status_pri[i] + citations_pri[i] + family_pri[i])/4*5
-        score.append(score_computed)
-    patents['score'] = score
+    # score = []
+    # # Merge priorities
+    # for i in range(len(patents)):
+    #     score_computed = (years_pri[i] + status_pri[i] + citations_pri[i] + family_pri[i])/4*5
+    #     score.append(score_computed)
+    # patents['score'] = score
 
-    # Save dataset
-    path = 'patents.csv'
-    patents.to_csv(path, index=False)
+    # # Save dataset
+    # path = 'patents.csv'
+    # patents.to_csv(path, index=False)
+
+
+    print((patents['Title'].unique()))

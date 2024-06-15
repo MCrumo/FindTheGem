@@ -47,13 +47,12 @@ def getAttachNumber(publication_number, application_number):
         an_final = an_final.split('.')[0]
     except:
         an_final = application_number
-        
+            
     return pn_final, an_final
     
         
-
 if __name__ == "__main__":
-    np.random.seed(12345)
+    
     df = pd.DataFrame(pd.read_excel('Llistat-patents-Fractus_estudiants_v2.xlsx'))
     patents = df[['Application Number', 'Publication number', 'Title', 'Status', 'Country', 'Grant Date', 'Expiration date']]
     number_pantents = patents.shape[0]
@@ -65,10 +64,6 @@ if __name__ == "__main__":
         patents['Publication number'][i] = pn_final
         patents['Application Number'][i] = an_final
 
-
-
-    # size_family = [np.random.randint(1, 5) for i in range(number_pantents)]
-    # number_citations = [np.random.randint(1, 50) for i in range(number_pantents)]
     size_family, number_citations = findPatentCitationsAndSizeFamily(patents)
     # print(size_family, number_citations)
     patents['size_family'] = size_family

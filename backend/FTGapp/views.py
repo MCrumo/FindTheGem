@@ -30,6 +30,7 @@ class PatentsViewSet(viewsets.ModelViewSet):
         serializer = PatentSerializer(patents, many=True)
     
         # enviar aixó a la IA
+        
         # resposta de la IA
 
         return Response(serializer.data) # respones del que m'ha tornat la IA
