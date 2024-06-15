@@ -11,16 +11,25 @@ def home(request):
     return render(request, "home.html")
 
 class PatentsViewSet(viewsets.ModelViewSet):
-    queryset = Patent.objects.all()
+    queryset = Patent.objects.all() 
     serializer_class = PatentSerializer
     
     # Un GET - Torna tots els elements de totes les patents que hi ha
     def list(self, request, *args, **kwargs):
-        return super().list(request,args, **kwargs)
+        #return super().list(request,args, **kwargs)
+        patents = Patent.objects.all() 
+        serializer = PatentSerializer(patents, many = True)
+        return Response(serializer.data)
     
     # Un GET pero en concret - Torna tots els elements d'una patent en concret
-    def retrieve(self, request, args, **kwargs):
-        return super().retrieve(request,args, **kwargs)
+    def retrieve(self, request, pk=None):
+        #return super().retrieve(request,args, **kwargs)
+        try:
+            patent = Patent.objects.get(pk=pk)
+            serializer = PatentSerializer(patent)
+            return Response(serializer.data)
+        except Patent.DoesNotExist:
+            return Response({"error": "Patent not found"}, status=404)
     
     # 
     @action(detail=False, methods=['get'])
@@ -33,7 +42,7 @@ class PatentsViewSet(viewsets.ModelViewSet):
         # resposta de la IA
 
         return Response(serializer.data) # respones del que m'ha tornat la IA
-
+"""
 def initPatents(request):
     # Agafar el csv i rescatar les dades per crear aqeusta patent
     # Fer un bucle i anar-ho posant tot
@@ -46,3 +55,4 @@ def initPatents(request):
                 author=author
             )
     patent.save()
+"""
