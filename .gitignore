@@ -7,10 +7,10 @@ backend/backend/__pycache__/settings.cpython-310.pyc
 backend/db.sqlite3
 
 .DS_Store
-node_modules
-/build
-/.svelte-kit
-/package
+**/node_modules
+**/build
+**/.svelte-kit
+**/package
 .env
 .env.*
 !.env.example
