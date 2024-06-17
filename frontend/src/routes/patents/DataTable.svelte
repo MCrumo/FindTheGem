@@ -40,6 +40,7 @@
   } from '$lib/components/shared/tableConfig';
   import MultiBadgeDataCell from '$lib/components/shared/MultiBadgeDataCell.svelte';
   import { id } from 'date-fns/locale';
+  import AdvancedSearch from './AdvancedSearch.svelte';
 
   export let data: Patent[];
   export let initialLayout: Partial<InitialLayout> = {};
@@ -235,6 +236,7 @@
       <div>Advanced Search</div>
     </Button>
   </div>
+  <AdvancedSearch />
   {#if resolvedTableOptions.freeTextFilter}
     <div class="flex flex-col">
       <Label>
