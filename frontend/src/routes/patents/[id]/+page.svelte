@@ -5,14 +5,15 @@
   import { Separator } from '$lib/components/ui/separator/index.js';
   import LoaderCircle from 'lucide-svelte/icons/loader-circle';
   import { Button } from '$lib/components/ui/button/index.js';
-
+  import PdfViewer from './PDFViewer.svelte';
   export let data: PageData;
 </script>
 
 <main>
   <Resizable.PaneGroup direction="horizontal" class="rounded">
-    <Resizable.Pane defaultSize={2 / 5}>
-      {#await data.image}
+    <Resizable.Pane defaultSize={1 / 2}>
+      <PdfViewer />
+      <!-- {#await data.image}
         <div class="flex h-full w-full items-center justify-center gap-2">
           <LoaderCircle class="animate-spin" />
           <span>Loading image...</span>
@@ -23,10 +24,10 @@
         </div>
       {:catch error}
         There was an error loading the Image. Please try again later.
-      {/await}
+      {/await} -->
     </Resizable.Pane>
     <Resizable.Handle withHandle />
-    <Resizable.Pane defaultSize={3 / 5}>
+    <Resizable.Pane defaultSize={1 / 2}>
       <div class="p-4">
         <h1 class="text-lg font-extrabold">
           Patent details for <strong>{data.form.data.applicationNumber}</strong>

@@ -46,6 +46,7 @@
     "paneforge": "^0.0.2",
     "papaparse": "^5.4.1",
     "pino": "^8.20.0",
+    "svelte-pdfjs": "^0.8.0",
     "svelte-sonner": "^0.3.19",
     "tailwind-merge": "^2.2.2",
     "tailwind-variants": "^0.2.1",
