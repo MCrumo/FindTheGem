@@ -30,7 +30,7 @@
   import { type DateValue, DateFormatter, getLocalTimeZone } from '@internationalized/date';
   import { Calendar } from '$lib/components/ui/calendar';
   import { format, parseISO } from 'date-fns';
-  import { es } from 'date-fns/locale';
+  import { es, id } from 'date-fns/locale';
 
   import {
     type InitialLayout,
@@ -38,16 +38,15 @@
     createTableConfig,
     compareNatural
   } from '$lib/components/shared/tableConfig';
-  import MultiBadgeDataCell from '$lib/components/shared/MultiBadgeDataCell.svelte';
-  import AdvancedSearch from './AdvancedSearch.svelte';
-  import Badge from '$lib/components/ui/badge/badge.svelte';
+  import { type Writable } from 'svelte/store';
 
-  export let data: Patent[];
-  export let initialLayout: Partial<InitialLayout> = { hiddenColumns: ['score'] };
+  export let data: Writable<Patent[]>;
+  export let category: string;
+  export let initialLayout: Partial<InitialLayout> = { sortKeys: [{ id: 'score', order: 'desc' }] };
   export let tableOptions: Partial<TableOptions> = {
-    freeTextFilter: true,
+    freeTextFilter: false,
     temporalFilter: false,
-    updateHiddenColumns: true
+    updateHiddenColumns: false
   };
 
   const { resolvedInitialLayout, resolvedTableOptions } = createTableConfig(
@@ -89,9 +88,7 @@
   const hiddenColumns: string[] = Object.keys($headers).filter(isHidden);
   console.log(hiddenColumns);
 
-  const advancedSearchPatterns = writable(data);
-
-  const table = createTable(writable(data), {
+  const table = createTable(data, {
     page: addPagination(),
     sort: addSortBy({
       initialSortKeys: initialLayout.sortKeys,
@@ -147,62 +144,8 @@
       }
     }),
     table.column({
-      accessor: 'title',
-      header: $headers.title,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'status',
-      header: $headers.status,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'country',
-      header: $headers.country,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'grantDate',
-      header: $headers.expirationDate,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'expirationDate',
-      header: $headers.expirationDate,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'sizeFamily',
-      header: $headers.sizeFamily,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'numberCitations',
-      header: $headers.numberCitations,
+      accessor: 'score',
+      header: $headers.score,
       plugins: {
         sort: {
           compareFn: compareNatural
@@ -235,13 +178,6 @@
 </script>
 
 <div class="flex flex-row gap-4">
-  <div class="mb-2 flex flex-col-reverse">
-    <Button id="advanced-search" class="default gap-1">
-      <Gem></Gem>
-      <div>Advanced Search</div>
-    </Button>
-  </div>
-  <AdvancedSearch data={advancedSearchPatterns} />
   {#if resolvedTableOptions.freeTextFilter}
     <div class="flex flex-col">
       <Label>

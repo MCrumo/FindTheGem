@@ -3,6 +3,9 @@
 	"/patents": [
 		"src/routes/patents/+page.ts"
 	],
+	"/patents/search": [
+		"src/routes/patents/search/+page.ts"
+	],
 	"/patents/[id]": [
 		"src/routes/patents/[id]/+page.server.ts"
 	]
