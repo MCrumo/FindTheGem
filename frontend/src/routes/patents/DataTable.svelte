@@ -40,6 +40,7 @@
   } from '$lib/components/shared/tableConfig';
   import MultiBadgeDataCell from '$lib/components/shared/MultiBadgeDataCell.svelte';
   import AdvancedSearch from './AdvancedSearch.svelte';
+  import Badge from '$lib/components/ui/badge/badge.svelte';
 
   export let data: Patent[];
   export let initialLayout: Partial<InitialLayout> = { hiddenColumns: ['score'] };
@@ -349,7 +350,9 @@
             {#each row.cells as cell (cell.id)}
               <Subscribe attrs={cell.attrs()} let:attrs>
                 <Table.Cell {...attrs}>
-                  <Render of={cell.render()} />
+                  <div class="text-center">
+                    <Render of={cell.render()} />
+                  </div>
                 </Table.Cell>
               </Subscribe>
             {/each}

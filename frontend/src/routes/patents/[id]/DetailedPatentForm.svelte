@@ -34,13 +34,10 @@
   });
 
   let formData = form.form;
-
-  let fields: string[] = $formData.applicationFields ?? [];
 </script>
 
 <!-- <SuperDebug data={$formData} /> -->
 <form method="POST" class="m-4 flex flex-col gap-10" use:form.enhance id="detailed-expense-form">
-  <input type="hidden" name="id" value={$formData.id} />
   <section class="flex gap-5">
     <div class="flex flex-row flex-wrap gap-5">
       <Form.Field {form} name="applicationNumber" class="w-64">
@@ -48,18 +45,18 @@
           <Form.Label>Application number</Form.Label>
           <Input {...attrs} readonly bind:value={$formData.applicationNumber} />
         </Form.Control>
-        <Form.Description>The unique identifier for this patent.</Form.Description>
+        <Form.Description>The application number for this patent.</Form.Description>
         <Form.FieldErrors />
       </Form.Field>
     </div>
 
     <div class="flex flex-row flex-wrap gap-5">
-      <Form.Field {form} name="country" class="w-64">
+      <Form.Field {form} name="publicationNumber" class="w-64">
         <Form.Control let:attrs>
-          <Form.Label>Country</Form.Label>
-          <Input {...attrs} readonly bind:value={$formData.country} />
+          <Form.Label>Application number</Form.Label>
+          <Input {...attrs} readonly bind:value={$formData.applicationNumber} />
         </Form.Control>
-        <Form.Description>Country/region where the patent is filed.</Form.Description>
+        <Form.Description>The publication number for this patent.</Form.Description>
         <Form.FieldErrors />
       </Form.Field>
     </div>
@@ -78,12 +75,23 @@
     </div>
 
     <div class="flex flex-row flex-wrap gap-5">
-      <Form.Field {form} name="owner" class="w-64">
+      <Form.Field {form} name="country" class="w-64">
         <Form.Control let:attrs>
-          <Form.Label>Owner</Form.Label>
-          <Input {...attrs} readonly bind:value={$formData.owner} />
+          <Form.Label>Country</Form.Label>
+          <Input {...attrs} readonly bind:value={$formData.country} />
         </Form.Control>
-        <Form.Description>The owners of the pattern.</Form.Description>
+        <Form.Description>Country/region where the patent is filled.</Form.Description>
+        <Form.FieldErrors />
+      </Form.Field>
+    </div>
+
+    <div class="flex flex-row flex-wrap gap-5">
+      <Form.Field {form} name="status" class="w-64">
+        <Form.Control let:attrs>
+          <Form.Label>Status</Form.Label>
+          <Input {...attrs} readonly bind:value={$formData.status} />
+        </Form.Control>
+        <Form.Description>The current status for the pattern.</Form.Description>
         <Form.FieldErrors />
       </Form.Field>
     </div>
@@ -91,10 +99,36 @@
 
   <section class="flex gap-5">
     <div class="flex flex-row flex-wrap gap-5">
-      <Form.Field {form} name="numberOfCitations" class="w-64">
+      <Form.Field {form} name="grantDate" class="w-64">
+        <Form.Control let:attrs>
+          <Form.Label>Grant date</Form.Label>
+          <Input {...attrs} readonly bind:value={$formData.grantDate} />
+        </Form.Control>
+        <Form.Description>
+          The date when the patent was granted. This is the date when the patent was approved.
+        </Form.Description>
+        <Form.FieldErrors />
+      </Form.Field>
+    </div>
+
+    <div class="flex flex-row flex-wrap gap-5">
+      <Form.Field {form} name="expirationDate" class="w-64">
+        <Form.Control let:attrs>
+          <Form.Label>Expiration day</Form.Label>
+          <Input {...attrs} readonly bind:value={$formData.expirationDate} />
+        </Form.Control>
+        <Form.Description>The expiration date for the patent.</Form.Description>
+        <Form.FieldErrors />
+      </Form.Field>
+    </div>
+  </section>
+
+  <section class="flex gap-5">
+    <div class="flex flex-row flex-wrap gap-5">
+      <Form.Field {form} name="numberCitations" class="w-64">
         <Form.Control let:attrs>
           <Form.Label>Number of citations</Form.Label>
-          <Input {...attrs} readonly bind:value={$formData.numberOfCitations} />
+          <Input {...attrs} readonly bind:value={$formData.numberCitations} />
         </Form.Control>
         <Form.Description>The number of citations the patent has.</Form.Description>
         <Form.FieldErrors />
@@ -102,38 +136,12 @@
     </div>
 
     <div class="flex flex-row flex-wrap gap-5">
-      <Form.Field {form} name="sizePatentFamily" class="w-64">
+      <Form.Field {form} name="sizeFamily" class="w-64">
         <Form.Control let:attrs>
           <Form.Label>Size patent family</Form.Label>
-          <Input {...attrs} readonly bind:value={$formData.sizePatentFamily} />
+          <Input {...attrs} readonly bind:value={$formData.sizeFamily} />
         </Form.Control>
         <Form.Description>The patent family size.</Form.Description>
-        <Form.FieldErrors />
-      </Form.Field>
-    </div>
-  </section>
-
-  <section class="flex gap-5">
-    <div class="flex flex-row flex-wrap gap-5">
-      <Form.Field {form} name="status" class="w-64">
-        <Form.Control let:attrs>
-          <Form.Label>Status</Form.Label>
-          <Input {...attrs} readonly bind:value={$formData.status} />
-        </Form.Control>
-        <Form.Description>The priority date of the patent.</Form.Description>
-        <Form.FieldErrors />
-      </Form.Field>
-    </div>
-
-    <div class="flex flex-row flex-wrap gap-5">
-      <Form.Field {form} name="applicationFields" class="w-64">
-        <Form.Control let:attrs>
-          <Form.Label>Application fields</Form.Label>
-          {#each fields as field}
-            <Input {...attrs} readonly bind:value={field} />
-          {/each}
-        </Form.Control>
-        <Form.Description>Industries where this pattern applies or is considered valuable.</Form.Description>
         <Form.FieldErrors />
       </Form.Field>
     </div>
