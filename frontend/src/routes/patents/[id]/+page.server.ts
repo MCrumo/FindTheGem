@@ -5,14 +5,14 @@ import { fail, type Actions } from '@sveltejs/kit';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import PatentInMemoryRepository from '$lib/repositories/patentsInMemory';
-import ImageInMemoryRepository from '$lib/repositories/images';
+import PDFsInMemoryRepository from '$lib/repositories/pdfs';
 
 // Dependencies
-const imageInMemoryRepository = new ImageInMemoryRepository();
+const imageInMemoryRepository = new PDFsInMemoryRepository();
 const patentRepository = new PatentInMemoryRepository(imageInMemoryRepository);
 
-async function loadImage(id: string) {
-  return patentRepository.getImageUrl(id);
+async function fetchPdf(id: string) {
+  return patentRepository.getPdf(id);
 }
 
 async function loadData(id: string) {
@@ -24,7 +24,7 @@ async function loadData(id: string) {
 
 export const load: PageServerLoad = async ({ params }) => {
   return {
-    image: loadImage(params.id),
+    pdf: fetchPdf(params.id),
     form: await loadData(params.id)
   };
 };

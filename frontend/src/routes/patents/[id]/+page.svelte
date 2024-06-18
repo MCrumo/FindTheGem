@@ -4,27 +4,47 @@
   import DetailedExpenseForm from './DetailedPatentForm.svelte';
   import { Separator } from '$lib/components/ui/separator/index.js';
   import LoaderCircle from 'lucide-svelte/icons/loader-circle';
-  import { Button } from '$lib/components/ui/button/index.js';
   import PdfViewer from './PDFViewer.svelte';
   export let data: PageData;
+
+  async function checkFileExists(path: string) {
+    try {
+      const response = await fetch(path);
+      console.log(response);
+      console.log(path);
+      return response.ok;
+    } catch (error) {
+      return false;
+    }
+  }
 </script>
 
 <main>
   <Resizable.PaneGroup direction="horizontal" class="rounded">
     <Resizable.Pane defaultSize={1 / 2}>
-      <PdfViewer />
-      <!-- {#await data.image}
+      {#await data.pdf}
         <div class="flex h-full w-full items-center justify-center gap-2">
           <LoaderCircle class="animate-spin" />
           <span>Loading image...</span>
         </div>
-      {:then image}
-        <div class="flex items-center justify-center">
-          <img src={image} alt="Expense details" class="inline-block h-auto max-w-full" />
-        </div>
-      {:catch error}
-        There was an error loading the Image. Please try again later.
-      {/await} -->
+      {:then path}
+        {#await checkFileExists(path)}
+          <div class="flex h-full w-full items-center justify-center gap-2">
+            <LoaderCircle class="animate-spin" />
+            <span>Loading image...</span>
+          </div>
+        {:then exists}
+          {#if exists}
+            <PdfViewer filename={path} />
+          {:else}
+            <p>This PDF is not available at the moment.</p>
+          {/if}
+        {:catch _}
+          Something unexpected happened. Please try again later.
+        {/await}
+      {:catch _}
+        Something unexpected happened. Please try again later.
+      {/await}
     </Resizable.Pane>
     <Resizable.Handle withHandle />
     <Resizable.Pane defaultSize={1 / 2}>

@@ -2,14 +2,14 @@ import Patent from '$lib/domain/patent';
 import type { PatentValueObject } from '$lib/domain/patent';
 import { v4 as uuidv4 } from 'uuid';
 import PatentData from '$lib/mocked_data/patents.json';
-import ImagesInMemoryRepository from '$lib/repositories/images';
+import PDFsInMemoryRepository from '$lib/repositories/pdfs';
 
 class PatentsInMemoryRepository implements Repository<Patent> {
   private patents: Patent[];
-  private imageRepository: ImagesInMemoryRepository;
+  private pdfRepository: PDFsInMemoryRepository;
 
-  constructor(imageRepository: ImagesInMemoryRepository) {
-    this.imageRepository = imageRepository;
+  constructor(imageRepository: PDFsInMemoryRepository) {
+    this.pdfRepository = imageRepository;
     this.patents = PatentData.samples;
   }
 
@@ -21,8 +21,8 @@ class PatentsInMemoryRepository implements Repository<Patent> {
     return this.patents.find((patent) => patent.id === id) ?? null;
   }
 
-  getImageUrl(id: string): Promise<string | null> {
-    return this.imageRepository.getTempImageUrl(id);
+  getPdf(id: string): Promise<string> {
+    return this.pdfRepository.getPdfFile(id);
   }
 
   create(patent: PatentValueObject): Patent {

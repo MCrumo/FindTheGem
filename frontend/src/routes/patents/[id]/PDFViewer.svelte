@@ -9,7 +9,7 @@
 
   let scale = [1];
   let num = 1;
-  let filename = 'DE20023881.pdf';
+  export let filename;
   let max_pages = 1;
   let renderTextLayer = true;
 </script>
@@ -32,7 +32,7 @@
 	---- be at /svelte-pdfjs/filename.pdf
 	-->
   <Document
-    file="{base}/{filename}"
+    file="{base}/patents/{filename}"
     loadOptions={{ docBaseUrl: base }}
     on:loadsuccess={(e) => {
       max_pages = e.detail.numPages;
