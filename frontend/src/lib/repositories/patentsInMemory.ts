@@ -1,7 +1,5 @@
 import Patent from '$lib/domain/patent';
-import type { PatentValueObject } from '$lib/domain/patent';
-import { v4 as uuidv4 } from 'uuid';
-import PatentData from '$lib/mocked_data/patents.json';
+import PatentData from '$lib/mocked_data/patents_prd.json';
 import PDFsInMemoryRepository from '$lib/repositories/pdfs';
 
 class PatentsInMemoryRepository implements Repository<Patent> {
@@ -17,23 +15,23 @@ class PatentsInMemoryRepository implements Repository<Patent> {
     return this.patents;
   }
 
-  findById(id: string): Patent | null {
-    return this.patents.find((patent) => patent.id === id) ?? null;
+  findById(publicationNumber: string): Patent | null {
+    return this.patents.find((patent) => patent.publicationNumber === publicationNumber) ?? null;
   }
 
   getPdf(id: string): Promise<string> {
     return this.pdfRepository.getPdfFile(id);
   }
 
-  create(patent: PatentValueObject): Patent {
-    const newPatent = new Patent(uuidv4(), patent);
+  create(patent: Partial<Patent>): Patent {
+    const newPatent = new Patent(patent);
     this.patents.push(newPatent);
 
     return newPatent;
   }
 
-  update(id: string, updatedPatent: Partial<PatentValueObject>): Patent | null {
-    const patentIndex = this.patents.findIndex((patent) => patent.id === id);
+  update(publicationNumber: string, updatedPatent: Partial<Patent>): Patent | null {
+    const patentIndex = this.patents.findIndex((patent) => patent.publicationNumber === publicationNumber);
 
     if (patentIndex === -1) return null;
 
@@ -47,8 +45,8 @@ class PatentsInMemoryRepository implements Repository<Patent> {
     return updatedPatentData;
   }
 
-  delete(id: string): Patent | null {
-    const patentIndex = this.patents.findIndex((patent) => patent.id === id);
+  delete(publicationNumber: string): Patent | null {
+    const patentIndex = this.patents.findIndex((patent) => patent.publicationNumber === publicationNumber);
 
     if (patentIndex === -1) return null;
 

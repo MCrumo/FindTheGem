@@ -39,11 +39,10 @@
     compareNatural
   } from '$lib/components/shared/tableConfig';
   import MultiBadgeDataCell from '$lib/components/shared/MultiBadgeDataCell.svelte';
-  import { id } from 'date-fns/locale';
   import AdvancedSearch from './AdvancedSearch.svelte';
 
   export let data: Patent[];
-  export let initialLayout: Partial<InitialLayout> = {};
+  export let initialLayout: Partial<InitialLayout> = { hiddenColumns: ['score'] };
   export let tableOptions: Partial<TableOptions> = {
     freeTextFilter: true,
     temporalFilter: false,
@@ -87,6 +86,7 @@
 
   const isHidden = (field: string) => !resolvedInitialLayout.hiddenColumns.includes(field);
   const hiddenColumns: string[] = Object.keys($headers).filter(isHidden);
+  console.log(hiddenColumns);
 
   const table = createTable(writable(data), {
     page: addPagination(),
@@ -110,7 +110,7 @@
 
   const columns = table.createColumns([
     table.column({
-      accessor: (row) => row.id,
+      accessor: (row) => row.publicationNumber,
       header: 'Actions',
       id: 'actions',
       cell: (accessor) => {
@@ -135,51 +135,17 @@
       }
     }),
     table.column({
+      accessor: 'publicationNumber',
+      header: $headers.publicationNumber,
+      plugins: {
+        sort: {
+          compareFn: compareNatural
+        }
+      }
+    }),
+    table.column({
       accessor: 'title',
       header: $headers.title,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'country',
-      header: $headers.country,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'sizePatentFamily',
-      header: $headers.sizePatentFamily,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'numberOfCitations',
-      header: $headers.numberOfCitations,
-      plugins: {
-        sort: {
-          compareFn: compareNatural
-        }
-      }
-    }),
-    table.column({
-      accessor: 'applicationFields',
-      header: $headers.applicationFields,
-      cell: (cell, _) => {
-        let tags = cell.value;
-        if (!tags) tags = [];
-        return createRender(MultiBadgeDataCell, {
-          tags: tags
-        });
-      },
       plugins: {
         sort: {
           compareFn: compareNatural
@@ -196,8 +162,44 @@
       }
     }),
     table.column({
-      accessor: 'owner',
-      header: $headers.owner,
+      accessor: 'country',
+      header: $headers.country,
+      plugins: {
+        sort: {
+          compareFn: compareNatural
+        }
+      }
+    }),
+    table.column({
+      accessor: 'grantDate',
+      header: $headers.expirationDate,
+      plugins: {
+        sort: {
+          compareFn: compareNatural
+        }
+      }
+    }),
+    table.column({
+      accessor: 'expirationDate',
+      header: $headers.expirationDate,
+      plugins: {
+        sort: {
+          compareFn: compareNatural
+        }
+      }
+    }),
+    table.column({
+      accessor: 'sizeFamily',
+      header: $headers.sizeFamily,
+      plugins: {
+        sort: {
+          compareFn: compareNatural
+        }
+      }
+    }),
+    table.column({
+      accessor: 'numberCitations',
+      header: $headers.numberCitations,
       plugins: {
         sort: {
           compareFn: compareNatural
@@ -230,7 +232,7 @@
 </script>
 
 <div class="flex flex-row gap-4">
-  <div class="flex flex-col-reverse mb-2">
+  <div class="mb-2 flex flex-col-reverse">
     <Button id="advanced-search" class="default gap-1">
       <Gem></Gem>
       <div>Advanced Search</div>
