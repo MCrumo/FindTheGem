@@ -25,7 +25,6 @@
   import * as Popover from '$lib/components/ui/popover';
   import ArrowUpDown from 'lucide-svelte/icons/arrow-up-down';
   import ChevronDown from 'lucide-svelte/icons/chevron-down';
-  import { Gem } from 'lucide-svelte';
   import CalendarIcon from 'lucide-svelte/icons/calendar';
   import { type DateValue, DateFormatter, getLocalTimeZone } from '@internationalized/date';
   import { Calendar } from '$lib/components/ui/calendar';
@@ -236,12 +235,8 @@
 
 <div class="flex flex-row gap-4">
   <div class="mb-2 flex flex-col-reverse">
-    <Button id="advanced-search" class="default gap-1">
-      <Gem></Gem>
-      <div>Advanced Search</div>
-    </Button>
+    <AdvancedSearch />
   </div>
-  <AdvancedSearch data={advancedSearchPatterns} />
   {#if resolvedTableOptions.freeTextFilter}
     <div class="flex flex-col">
       <Label>

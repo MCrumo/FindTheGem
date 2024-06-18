@@ -1,40 +1,32 @@
 <script lang="ts">
   import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
   import * as Dialog from '$lib/components/ui/dialog/index';
-  import { Input } from '$lib/components/ui/input/index';
-  import { Label } from '$lib/components/ui/label/index';
-  import { cn } from '$lib/utils';
-  import { LoaderCircle } from 'lucide-svelte';
+  import { GemIcon, LoaderCircle } from 'lucide-svelte';
   import TmpSearch from './TmpSearch.svelte';
-  import SmallDataTable from './search/SmallDataTable.svelte';
-  import type Patent from '$lib/domain/patent';
-  import { writable, type Writable } from 'svelte/store';
-
-  export let data: Writable<Patent[]>;
+  import { Gem } from 'lucide-svelte';
 
   let selectedCategory: string = '';
-  let status: 'idle' | 'loading' | 'results';
+  let open = false;
+  let status: 'idle' | 'loading';
 
   async function delay(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  function resetOnClose(open: boolean) {
-    if (!open) {
-      selectedCategory = '';
-      status = 'results';
-    }
-  }
-
   async function triggerSearch() {
     status = 'loading';
-    await delay(1000);
-    status = 'results';
+    await delay(10000);
+    window.open(`/patents/search?category=${selectedCategory}`, '_blank');
+    status = 'idle';
+    selectedCategory = '';
+    open = false;
   }
 </script>
 
-<Dialog.Root onOpenChange={resetOnClose}>
-  <Dialog.Trigger class={buttonVariants({ variant: 'outline' })}>Advanced Search</Dialog.Trigger>
+<Dialog.Root {open}>
+  <Dialog.Trigger class={buttonVariants({ variant: 'default' })}
+    ><GemIcon /> Advanced Search</Dialog.Trigger
+  >
   <Dialog.Content class="overflow-y-auto">
     {#if status === 'loading'}
       <Dialog.Header>
@@ -43,16 +35,6 @@
       <div class="flex h-full w-full items-center justify-center gap-2">
         <LoaderCircle class="animate-spin" />
         <span>Performing an AI-powered search, please wait.</span>
-      </div>
-    {:else if status === 'results'}
-      <Dialog.Header>
-        <Dialog.Title>Advanced Search: Results</Dialog.Title>
-      </Dialog.Header>
-      <div class="">
-        <Label>Results</Label>
-        <div class="">
-          <SmallDataTable {data}/>
-        </div>
       </div>
     {:else}
       <Dialog.Header>

@@ -40,7 +40,7 @@
   } from '$lib/components/shared/tableConfig';
   import { type Writable } from 'svelte/store';
 
-  export let data: Writable<Patent[]>;
+  export let data: Patent[];
   export let category: string;
   export let initialLayout: Partial<InitialLayout> = { sortKeys: [{ id: 'score', order: 'desc' }] };
   export let tableOptions: Partial<TableOptions> = {
@@ -88,7 +88,7 @@
   const hiddenColumns: string[] = Object.keys($headers).filter(isHidden);
   console.log(hiddenColumns);
 
-  const table = createTable(data, {
+  const table = createTable(writable(data), {
     page: addPagination(),
     sort: addSortBy({
       initialSortKeys: initialLayout.sortKeys,

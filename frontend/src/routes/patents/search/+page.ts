@@ -8,8 +8,12 @@ const repository = new PatentsInMemoryRepository(pdfRepository);
 
 export const load: PageLoad = async ( { url} ) => {
   let category = url.searchParams.get('category');
+  console.log('category:', category);
   if (category) {
-    return { patents: repository.findAll().filter(patent => patent.title === category) };
+    return { 
+      patents: repository.findAll().filter(patent => patent.title === decodeURIComponent(category)),
+      category: category
+    };
   }
-  return { patents: [] };
+  return { patents: [], category: 'Invalid Category'};
 }
